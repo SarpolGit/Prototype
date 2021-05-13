@@ -1,7 +1,8 @@
-#include <iostream>
-
+#pragma once
 #ifndef CARD_H
 #define CARD_H
+
+#include <iostream>
 
 class Card;
 
@@ -31,4 +32,4 @@ private:
     int strength;
     Breed& breed;
 };
-#endif 
+#endif

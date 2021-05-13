@@ -1,10 +1,14 @@
+#pragma once
+#ifndef PLAYER_H
+#define PLAYER_H
+
 #include <iostream>
 #include <vector>
 #include "deck.h"
 #include "pole.h"
+#include "hero.h"
 
-#ifndef PLAYER_H
-#define PLAYER_H
+
 
 class Player{
 public:
@@ -48,5 +52,5 @@ private:
     //Position leader;
     //Первый игрок или второй
     int side_;
-};
-#endif 
+}; 
+#endif

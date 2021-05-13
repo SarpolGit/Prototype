@@ -1,9 +1,12 @@
+#pragma once
+#ifndef POLE_H
+#define POLE_H
+
 #include "position.h"
 #include <vector>
 #include <iostream>
 
-#ifndef POLE_H
-#define POLE_H
+
 class Pole{
 public:
     Pole();

@@ -1,7 +1,4 @@
 #include "player.h"
-#include "hero.h"
-#include "position.h"
-#include "pole.h"
 #include <iostream>
 
 Player::Player(Deck& deck,int side):deck_(deck),side_(side){}

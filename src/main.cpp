@@ -1,10 +1,4 @@
-#include <iostream>
-#include <vector>
-#include "position.h"
 #include "player.h"
-#include "card.h"
-#include "deck.h"
-#include "pole.h"
 
 int main(){
     Pole poleshko;

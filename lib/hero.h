@@ -1,7 +1,10 @@
-#include "card.h"
-
+#pragma once
 #ifndef HERO_H
 #define HERO_H
+
+#include "card.h"
+
+
 class Hero{
 public:
     Hero();

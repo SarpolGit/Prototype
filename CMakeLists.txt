@@ -12,9 +12,9 @@ include_directories(lib/)
 add_library(position src/position.cpp)
 add_library(card src/card.cpp)
 add_library(deck src/deck.cpp)
-add_library(player src/player.cpp)
 add_library(hero src/hero.cpp)
 add_library(pole src/pole.cpp)
+add_library(player src/player.cpp)
 
 
 add_executable(main src/main.cpp)

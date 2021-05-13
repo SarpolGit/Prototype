@@ -1,41 +1,31 @@
-#include "hero.h"
-#include "card.h"
+#pragma once
 #ifndef POSITION_H
 #define POSITION_H
 
+#include "hero.h"
+#include "card.h"
+
+
 class Position{
 public:
-    Position():cell_(0),line_(0),side_(0),empty_(true),hero_(Hero()){};
-    Position(int cell, int line, int side):cell_(cell),line_(line),side_(side),empty_(true),hero_(Hero()){};
-   // Position(const Position& other);
-    //Position& operator = (const Position& other);
-   // ~Position();
+    Position();
+    Position(int cell, int line, int side);
 
     //Пустая ли клетка?
-    bool isEmpty(){return empty_;};
+    bool isEmpty();
     //Получить героя с клетки
     //Hero& GetHero();
     //Информация о позиции
     //Поставить героя
-    void SetHero(Card* card){
-        Hero hero(card);
-        hero_ = hero;
-        empty_ = false;
-    };
-    void RemoveHero(){
-        empty_ = true;
-    }
+    void SetHero(Card* card);
+    void RemoveHero();
     
-    int GetCell(){return cell_;}
-    int GetLine(){return line_;}
-    int GetSide(){return side_;}
-    Hero& GetHero(){return hero_;}
+    int GetCell();
+    int GetLine();
+    int GetSide();
+    Hero& GetHero();
 
-    void InfoPosition(){
-        if(!(*this).isEmpty()){
-        std::cout << "Здоровье Героя:" << (*this).GetHero().GetHealth() << " " << "Атака Героя:" << (*this).GetHero().GetStrength() << std::endl; 
-    }
-}
+    void InfoPosition();
 
 private:
     //Дальняя клетка - 1 Средняя - 2 Ближняя - 3
@@ -49,4 +39,4 @@ private:
     //Герой на данной клетке
     Hero hero_;
 };
-#endif 
+#endif

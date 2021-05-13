@@ -1,5 +1,4 @@
 #include "pole.h"
-#include "position.h"
 
 Pole::Pole(){
     pole_.resize(0);

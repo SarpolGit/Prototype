@@ -1,8 +1,10 @@
+#pragma once
+#ifndef DECK_H
+#define DECK_H
+
 #include "card.h"
 #include <vector>
 
-#ifndef DECK_H
-#define DECK_H
 
 class Deck{
 public:
@@ -15,5 +17,4 @@ public:
 private:
     std::vector<Card*> deck_;
 };
-
-#endif 
+#endif
