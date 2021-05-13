@@ -4,6 +4,7 @@
 #include "player.h"
 #include "card.h"
 #include "deck.h"
+#include "pole.h"
 
 Position& GetPosition(int cell, int line, int side, std::vector<Position>& pole){
     for(int i = 0; i < pole.size(); i++){
@@ -67,7 +68,7 @@ bool CheckLeader(Position& FirstPlayerLeader, Position& SecondPlayerLeader,std::
 
 
 int main(){
-
+    Pole poleshko;
     std::vector<Position> pole_;
     for(int side = 0; side < 2; side++){
         for(int cell = 0; cell < 3; cell++){
@@ -77,6 +78,7 @@ int main(){
             }
         }
     }
+    poleshko.Show();
 
     /*for(int i = 0; i < pole_.size(); i++){
        std::cout << pole_[i].GetCell() << pole_[i].GetLine() << pole_[i].GetSide() << std::boolalpha << pole_[i].isEmpty() << std::endl;

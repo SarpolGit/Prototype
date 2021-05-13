@@ -31,6 +31,12 @@ public:
     int GetSide(){return side_;}
     Hero& GetHero(){return hero_;}
 
+    void InfoPosition(){
+        if(!(*this).isEmpty()){
+        std::cout << "Здоровье Героя:" << (*this).GetHero().GetHealth() << " " << "Атака Героя:" << (*this).GetHero().GetStrength() << std::endl; 
+    }
+}
+
 private:
     //Дальняя клетка - 1 Средняя - 2 Ближняя - 3
     unsigned int cell_;
