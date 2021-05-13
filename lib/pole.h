@@ -1,4 +1,3 @@
-/*
 #include "position.h"
 #include <vector>
 #include <iostream>
@@ -35,4 +34,3 @@ private:
     std::vector<Position> pole_;
 };
 #endif
-*/

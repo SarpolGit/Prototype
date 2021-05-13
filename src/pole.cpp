@@ -1,7 +1,6 @@
-/*
 #include "pole.h"
 #include "position.h"
-
+/*
 Pole::Pole(){
     int i = 0;
     for(int cell = 0; cell < 3; cell++){

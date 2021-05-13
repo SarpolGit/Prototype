@@ -6,19 +6,22 @@ FIND_PACKAGE(Boost 1.75.0 REQUIRED)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_library(position position.cpp)
-add_library(card card.cpp)
-add_library(deck deck.cpp)
-add_library(player player.cpp)
-add_library(hero hero.cpp)
-#add_library(pole pole.cpp)
+
+include_directories(lib/)
+
+add_library(position src/position.cpp)
+add_library(card src/card.cpp)
+add_library(deck src/deck.cpp)
+add_library(player src/player.cpp)
+add_library(hero src/hero.cpp)
+add_library(pole src/pole.cpp)
 
 
-add_executable(main main.cpp)
+add_executable(main src/main.cpp)
 
 target_link_libraries(main position)
 target_link_libraries(main card)
-#target_link_libraries(main pole)
+target_link_libraries(main pole)
 target_link_libraries(main deck)
 target_link_libraries(main hero)
 target_link_libraries(main player)
