@@ -33,6 +33,7 @@ public:
     Deck& GetDeck();
     void StartingHand();
     Deck& GetHand();
+    void Attack(Position& FriendlyHero, Position& EnemyHero);
 
 private:
     //Рука Карт

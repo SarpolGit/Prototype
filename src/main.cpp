@@ -6,79 +6,8 @@
 #include "deck.h"
 #include "pole.h"
 
-Position& GetPosition(int cell, int line, int side, std::vector<Position>& pole){
-    for(int i = 0; i < pole.size(); i++){
-        if((pole[i].GetCell() == cell) && (pole[i].GetLine() == line) && (pole[i].GetSide() == side))
-            return pole[i];
-    }
-}
-
-void Show(std::vector<Position>& pole){
-    Position PolePosition;
-    for(int itline = 0; itline < 3; itline++){
-        for(int itcell = 0; itcell < 3; itcell++){
-            PolePosition = GetPosition(itcell, itline, 0, pole);
-            if(PolePosition.isEmpty())
-                std::cout << 0;
-            else
-                std::cout << 1;
-        }
-        std::cout << " ";
-        for(int itcell = 0; itcell < 3; itcell++){
-            PolePosition = GetPosition(itcell, itline, 1, pole);
-            if(PolePosition.isEmpty())
-                std::cout << 0;
-            else
-                std::cout << 1;
-        }
-        std::cout << std::endl;
-    }
-}
-
-void SetPosition(std::vector<Position>& pole, Position& position){
-    for(int i = 0; i < pole.size(); i++){
-        if((pole[i].GetCell() == position.GetCell()) && (pole[i].GetLine() == position.GetLine()) && (pole[i].GetSide() == position.GetSide()))
-            pole[i] = position;
-    }
-}
-
-void infoPosition(std::vector<Position>& pole, Position& position){
-    if(!position.isEmpty()){
-        std::cout << "Здоровье Героя:" << position.GetHero().GetHealth() << " " << "Атака Героя:" << position.GetHero().GetStrength() << std::endl; 
-    }
-}
-
-void Attack(Player& ChosenPlayer, Position& FriendlyHero, Position& EnemyHero, std::vector<Position>& pole){
-    EnemyHero.GetHero().ReduceHealth(FriendlyHero.GetHero().GetStrength());
-    if(EnemyHero.GetHero().GetHealth() <= 0) EnemyHero.RemoveHero();
-}
-
-bool CheckLeader(Position& FirstPlayerLeader, Position& SecondPlayerLeader,std::vector<Position>& pole){
-    if(FirstPlayerLeader.isEmpty()){
-        std::cout << "Победил второй игрок!!!!!!";
-        return false;
-    }
-    if(SecondPlayerLeader.isEmpty()){
-        std::cout << "Победил первый игрок!!!!!!";
-        return false;
-    }
-    return true;
-}
-
-
-
 int main(){
     Pole poleshko;
-    std::vector<Position> pole_;
-    for(int side = 0; side < 2; side++){
-        for(int cell = 0; cell < 3; cell++){
-            for(int line = 0; line < 3; line++){
-                    Position position(cell,line,side);
-                    pole_.push_back(position);
-            }
-        }
-    }
-    poleshko.Show();
 
     /*for(int i = 0; i < pole_.size(); i++){
        std::cout << pole_[i].GetCell() << pole_[i].GetLine() << pole_[i].GetSide() << std::boolalpha << pole_[i].isEmpty() << std::endl;
@@ -116,7 +45,7 @@ int main(){
     }
     std::cin >> choice;
     FirstPlayerLeader.SetHero(LeaderCards[choice]);
-    SetPosition(pole_,FirstPlayerLeader);
+    poleshko.SetPosition(FirstPlayerLeader);
 
     std::cout << "Выбери лидера Второй игрок" << std::endl;
     for(int i = 0; i < LeaderCards.size(); i++){
@@ -124,7 +53,7 @@ int main(){
     }
     std::cin >> choice;
     SecondPlayerLeader.SetHero(LeaderCards[choice]);
-    SetPosition(pole_,SecondPlayerLeader);
+    poleshko.SetPosition(SecondPlayerLeader);
     
 
     std::vector<Card*> useCard;
@@ -162,7 +91,7 @@ int main(){
     Player CurrentPlayer = FirstPlayer;
     int MovesAmount = 2;
 
-    while(CheckLeader(GetPosition(1,1,0,pole_),GetPosition(1,1,1,pole_),pole_)){
+    while(poleshko.CheckLeader()){
         if(MovesAmount == 0){
             if(currentside == 0){
                 std::cout << "Ход переходит ко второму игроку" << std::endl;
@@ -208,8 +137,8 @@ int main(){
                 int side = 0;
 
                 std::cin >> cell >> line >> side;
-                Position kletka = GetPosition(cell,line,side,pole_);
-                infoPosition(pole_,kletka);
+                Position kletka = poleshko.GetPosition(cell,line,side);
+                kletka.InfoPosition();
                 std::cout << "//////////////////////////" << std::endl;
                 break;
             }
@@ -219,7 +148,7 @@ int main(){
                 int cell = 0;
 
                 std::cin >> cell >> line;
-                Position YourHero = GetPosition(cell,line,CurrentPlayer.GetSide(),pole_);
+                Position YourHero = poleshko.GetPosition(cell,line,CurrentPlayer.GetSide());
 
                 std::cout << "Введите клетку и линию вражеского героя"  << std::endl;
                 std::cin >> cell >> line;
@@ -229,15 +158,15 @@ int main(){
                 }else{
                     EnemySide = 0;
                 }
-                Position EnemyHero = GetPosition(cell,line,EnemySide,pole_);
+                Position EnemyHero = poleshko.GetPosition(cell,line,EnemySide);
 
-                Attack(CurrentPlayer,YourHero,EnemyHero,pole_);
-                SetPosition(pole_,EnemyHero);
+                CurrentPlayer.Attack(YourHero,EnemyHero);
+                poleshko.SetPosition(EnemyHero);
                 MovesAmount--;
                 break;
             }
             case(5):{
-                Show(pole_);
+                poleshko.Show();
                 break;
             }
             case(6):{
@@ -250,9 +179,9 @@ int main(){
                 int cell = 0;
                 std::cin >> cell >> line;
 
-                Position kletka = GetPosition(cell,line,CurrentPlayer.GetSide(),pole_);
+                Position kletka = poleshko.GetPosition(cell,line,CurrentPlayer.GetSide());
                 kletka.SetHero(ChosenCard);
-                SetPosition(pole_,kletka);
+                poleshko.SetPosition(kletka);
                 MovesAmount --;
                 break;
             }

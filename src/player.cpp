@@ -40,6 +40,10 @@ int Player::GetSide(){
     return side_;
 }
 
+void Player::Attack(Position& FriendlyHero, Position& EnemyHero){
+    EnemyHero.GetHero().ReduceHealth(FriendlyHero.GetHero().GetStrength());
+    if(EnemyHero.GetHero().GetHealth() <= 0) EnemyHero.RemoveHero();
+}
 
 
 
